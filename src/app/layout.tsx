@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { Sidebar, SidebarContent, SidebarHeader, SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
-import { Film } from 'lucide-react';
+import { Sidebar, SidebarContent, SidebarHeader, SidebarInset, SidebarProvider, SidebarFooter, SidebarMenuButton } from '@/components/ui/sidebar';
+import { Film, LogIn } from 'lucide-react';
 import { MainNav } from '@/components/main-nav';
 import { SiteHeader } from '@/components/site-header';
 import { Toaster } from "@/components/ui/toaster"
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Cine Genie',
@@ -35,6 +36,14 @@ export default function RootLayout({
             <SidebarContent>
               <MainNav />
             </SidebarContent>
+            <SidebarFooter>
+              <SidebarMenuButton asChild>
+                <Link href="#">
+                  <LogIn />
+                  <span>Sign In / Sign Up</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarFooter>
           </Sidebar>
           <SidebarInset>
             <SiteHeader />
