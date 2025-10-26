@@ -158,6 +158,54 @@ const getMoviesByMoodFlow = ai.defineFlow(
           trailerUrl: 'https://www.youtube.com/watch?v=2D53Ue4p3w4',
         }
       ];
+    } else if (input.mood.toLowerCase() === 'thrilling') {
+      return [
+        {
+          title: 'Ugly',
+          year: 2013,
+          imdbRating: 8.0,
+          platform: 'Prime Video',
+          description: 'A struggling actor\'s daughter goes missing, and the subsequent investigation unveils a web of corruption, greed, and broken relationships.',
+          imageUrl: 'https://picsum.photos/seed/ugly/200/300',
+          trailerUrl: 'https://www.youtube.com/watch?v=4-p4g96kX-E'
+        },
+        {
+          title: 'Ravanasura',
+          year: 2023,
+          imdbRating: 6.3,
+          platform: 'Zee5',
+          description: 'A junior lawyer known for his cunning nature takes on a high-profile case that reveals a sinister plot and a series of murders.',
+          imageUrl: 'https://picsum.photos/seed/ravanasura/200/300',
+          trailerUrl: 'https://www.youtube.com/watch?v=GbJy_8tL3x0'
+        },
+        {
+          title: 'Hacked',
+          year: 2020,
+          imdbRating: 3.2,
+          platform: 'Zee5',
+          description: 'A young woman\'s life turns into a nightmare when an obsessed hacker begins to control her life through her digital devices.',
+          imageUrl: 'https://picsum.photos/seed/hacked/200/300',
+          trailerUrl: 'https://www.youtube.com/watch?v=Nn1_pLgP3sU'
+        },
+        {
+          title: 'Raw',
+          year: 2016,
+          imdbRating: 7.0,
+          platform: 'Netflix',
+          description: 'A young vegetarian undergoes a carnivorous hazing ritual at vet school and develops an unbidden and insatiable craving for meat.',
+          imageUrl: 'https://picsum.photos/seed/raw-movie/200/300',
+          trailerUrl: 'https://www.youtube.com/watch?v=gFlXVX2af_0'
+        },
+        {
+          title: 'Fighter',
+          year: 2024,
+          imdbRating: 7.2,
+          platform: 'Netflix',
+          description: 'Top IAF aviators come together in the face of imminent danger, to form Air Dragons. Fighter unfolds their camaraderie, brotherhood and battles, internal and external.',
+          imageUrl: 'https://picsum.photos/seed/fighter-thrill/200/300',
+          trailerUrl: 'https://www.youtube.com/watch?v=6amIq_mP4xM'
+        }
+      ]
     }
     const {output} = await prompt(input);
     return output!;
