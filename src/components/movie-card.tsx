@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from '@/components/ui/badge';
 import type { Movie } from '@/lib/types';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Star, Tv, Play, Clapperboard } from 'lucide-react';
+import { Star, Tv, Play, Clapperboard, PlusCircle } from 'lucide-react';
 import { Button } from './ui/button';
 
 const placeholderImage = PlaceHolderImages.find(p => p.id === 'movie-placeholder');
@@ -14,6 +14,12 @@ type MovieCardProps = {
 
 export function MovieCard({ movie }: MovieCardProps) {
   const platform = movie.platform || movie.streamingPlatform || movie.streamingAvailability;
+
+  const handleAddToWatchlist = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent card hover effect from triggering
+    // In a real app, you'd dispatch an action to add to a state/DB.
+    console.log(`Added ${movie.title} to watchlist`);
+  };
 
   return (
     <Card className="group relative flex flex-col overflow-hidden h-full transform transition-all duration-300 hover:scale-105 hover:shadow-xl w-48">
@@ -38,6 +44,15 @@ export function MovieCard({ movie }: MovieCardProps) {
               Trailer
             </Button>
           </div>
+          <Button
+            size="icon"
+            variant="ghost"
+            className="absolute bottom-2 right-2 h-8 w-8 rounded-full bg-black/50 text-white hover:bg-primary hover:text-primary-foreground"
+            onClick={handleAddToWatchlist}
+            aria-label="Add to watchlist"
+          >
+            <PlusCircle className="h-5 w-5" />
+          </Button>
         </div>
       </CardHeader>
       <CardContent className="flex-grow p-3 space-y-1">
