@@ -61,12 +61,7 @@ const suggestMoviesByMoodFlow = ai.defineFlow(
     outputSchema: SuggestMoviesByMoodOutputSchema,
   },
   async input => {
-    // If the genre is 'any', we should not pass it to the prompt.
-    const promptInput = { ...input };
-    if (promptInput.genre === 'any') {
-      delete promptInput.genre;
-    }
-    const {output} = await suggestMoviesByMoodPrompt(promptInput);
+    const {output} = await suggestMoviesByMoodPrompt(input);
     return output!;
   }
 );
