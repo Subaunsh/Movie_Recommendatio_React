@@ -1,7 +1,6 @@
 'use server';
 
 import { generateMovieRecommendations } from '@/ai/flows/generate-movie-recommendations';
-import { suggestMoviesByMood } from '@/ai/flows/suggest-movies-by-mood';
 import { discoverHiddenGems } from '@/ai/flows/discover-hidden-gems';
 import { createAIWatchlist } from '@/ai/flows/create-ai-watchlists';
 
@@ -17,14 +16,6 @@ export async function getRecommendationsAction(formData: FormData) {
     const mood = formData.get('mood') as string | undefined;
     const platform = formData.get('platform') as string | undefined;
     
-    // If only mood is provided, use the mood-specific flow
-    const favMovies = formData.get('favoriteMovies');
-    const favGenres = formData.get('favoriteGenres');
-    if (mood && mood !== 'any' && !favMovies && !favGenres) {
-        const result = await suggestMoviesByMood({ mood });
-        return { success: true, data: result.movies };
-    }
-
     const recommendations = await generateMovieRecommendations({
       tasteProfile,
       mood: mood === 'any' ? undefined : mood,
@@ -37,16 +28,6 @@ export async function getRecommendationsAction(formData: FormData) {
     console.error(error);
     return { success: false, error: 'Failed to get recommendations. Please try again.' };
   }
-}
-
-export async function getMoodMoviesAction(mood: string) {
-    try {
-        const result = await suggestMoviesByMood({ mood });
-        return { success: true, data: result.movies };
-    } catch (error) {
-        console.error(error);
-        return { success: false, error: 'Failed to get movies for this mood. Please try again.' };
-    }
 }
 
 export async function getHiddenGemsAction(formData: FormData) {

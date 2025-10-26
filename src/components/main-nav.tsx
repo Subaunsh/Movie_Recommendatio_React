@@ -2,11 +2,10 @@
 
 import { usePathname } from 'next/navigation';
 import { SidebarMenu, SidebarMenuItem, SidebarMenuButton } from '@/components/ui/sidebar';
-import { Home, Compass, Smile, List, Clapperboard } from 'lucide-react';
+import { Home, Compass, List } from 'lucide-react';
 
 const navItems = [
   { href: '/', label: 'Home', icon: Home },
-  { href: '/mood', label: 'Mood Mode', icon: Smile },
   { href: '/explore', label: 'Explore', icon: Compass },
   { href: '/watchlist', label: 'AI Watchlist', icon: List },
 ];
