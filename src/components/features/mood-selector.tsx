@@ -78,7 +78,7 @@ export function MoodSelector() {
             {isLoading ? 'Finding movies...' : `Top Picks for a ${selectedMood} Mood`}
           </h2>
           {isLoading ? (
-             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
              {[...Array(6)].map((_, i) => (
                <div key={i} className="space-y-2">
                    <div className="aspect-[2/3] bg-muted animate-pulse rounded-lg"></div>
@@ -89,7 +89,7 @@ export function MoodSelector() {
              ))}
            </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {movies.map((movie) => (
                 <MovieCard key={movie.title} movie={movie} />
               ))}
