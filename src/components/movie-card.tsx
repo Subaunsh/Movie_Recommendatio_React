@@ -5,6 +5,7 @@ import type { Movie } from '@/lib/types';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Star, Tv, Play, Clapperboard, PlusCircle } from 'lucide-react';
 import { Button } from './ui/button';
+import { useToast } from '@/hooks/use-toast';
 
 const placeholderImage = PlaceHolderImages.find(p => p.id === 'movie-placeholder');
 
@@ -13,12 +14,40 @@ type MovieCardProps = {
 };
 
 export function MovieCard({ movie }: MovieCardProps) {
+  const { toast } = useToast();
   const platform = movie.platform || movie.streamingPlatform || movie.streamingAvailability;
 
   const handleAddToWatchlist = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Prevent card hover effect from triggering
-    // In a real app, you'd dispatch an action to add to a state/DB.
-    console.log(`Added ${movie.title} to watchlist`);
+    e.preventDefault();
+    e.stopPropagation();
+    
+    try {
+      const savedWatchlists = JSON.parse(localStorage.getItem('my-watchlist') || '[]');
+      const isAlreadyAdded = savedWatchlists.some((m: Movie) => m.title === movie.title);
+
+      if (isAlreadyAdded) {
+        toast({
+          title: 'Already in Watchlist',
+          description: `"${movie.title}" is already in your watchlist.`,
+        });
+        return;
+      }
+
+      const newWatchlist = [movie, ...savedWatchlists];
+      localStorage.setItem('my-watchlist', JSON.stringify(newWatchlist));
+      toast({
+        title: 'Added to Watchlist!',
+        description: `"${movie.title}" has been added.`,
+      });
+      // Dispatch a custom event to notify other components (like the watchlist page)
+      window.dispatchEvent(new Event('watchlistUpdated'));
+    } catch (error) {
+      toast({
+        variant: 'destructive',
+        title: 'Failed to Add',
+        description: 'Could not add movie to your watchlist.',
+      });
+    }
   };
 
   return (
