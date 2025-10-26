@@ -12,10 +12,9 @@ import { getAiWatchlistAction } from '@/app/actions';
 import type { Movie } from '@/lib/types';
 import { Wand2, Loader2, Film } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
 import Image from 'next/image';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { WatchlistActions } from './watchlist-actions';
 
 const formSchema = z.object({
@@ -27,7 +26,7 @@ const formSchema = z.object({
 const moods = ["Rainy Night", "Girls Night", "Action-Packed Weekend", "Mind-Bending Marathon", "Date Night", "Laugh Out Loud"];
 const genres = ["Any", "Comedy", "Action", "Drama", "Sci-Fi", "Horror", "Romance", "Thriller"];
 const platforms = ["Any", "Netflix", "Prime Video", "Disney+", "Hulu", "Max", "Apple TV+"];
-const placeholderImage = PlaceHolderImages.find(p => p.id === 'movie-placeholder');
+const placeholderImage = "https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtb3ZpZSUyMHBvc3RlcnxlbnwwfHx8fDE3NjE0MTMxMDJ8MA&ixlib=rb-4.1.0&q=80&w=1080";
 
 export function WatchlistForm() {
   const [watchlist, setWatchlist] = useState<Movie[]>([]);
@@ -166,7 +165,7 @@ export function WatchlistForm() {
                 return (
                     <Card key={movie.title} className="flex flex-col sm:flex-row overflow-hidden">
                         <div className="sm:w-32 md:w-40 flex-shrink-0 relative aspect-[2/3] sm:aspect-auto">
-                           {placeholderImage && <Image src={placeholderImage.imageUrl} alt={movie.title} fill className="object-cover" />}
+                           <Image src={movie.imageUrl || placeholderImage} alt={movie.title} fill className="object-cover" />
                         </div>
                         <div className="flex flex-col flex-grow">
                             <CardHeader>

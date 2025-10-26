@@ -2,12 +2,11 @@ import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import type { Movie } from '@/lib/types';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Star, Tv, Play, Clapperboard, PlusCircle } from 'lucide-react';
 import { Button } from './ui/button';
 import { useToast } from '@/hooks/use-toast';
 
-const placeholderImage = PlaceHolderImages.find(p => p.id === 'movie-placeholder');
+const defaultImage = "https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtb3ZpZSUyMHBvc3RlcnxlbnwwfHx8fDE3NjE0MTMxMDJ8MA&ixlib=rb-4.1.0&q=80&w=200";
 
 type MovieCardProps = {
   movie: Movie;
@@ -54,15 +53,13 @@ export function MovieCard({ movie }: MovieCardProps) {
     <Card className="group relative flex flex-col overflow-hidden h-full transform transition-all duration-300 hover:scale-105 hover:shadow-xl w-48">
       <CardHeader className="p-0">
         <div className="aspect-[2/3] relative">
-          {placeholderImage && (
-             <Image
-                src={placeholderImage.imageUrl}
-                alt={movie.title}
-                fill
-                className="object-cover"
-                data-ai-hint={placeholderImage.imageHint}
-            />
-          )}
+           <Image
+              src={movie.imageUrl || defaultImage}
+              alt={movie.title}
+              fill
+              className="object-cover"
+              data-ai-hint="movie poster"
+          />
            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2">
             <Button variant="secondary" size="sm">
               <Play className="mr-1 h-4 w-4" />
