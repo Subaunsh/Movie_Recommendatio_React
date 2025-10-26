@@ -204,6 +204,51 @@ const getMoviesByMoodFlow = ai.defineFlow(
           description: 'Top IAF aviators come together in the face of imminent danger, to form Air Dragons. Fighter unfolds their camaraderie, brotherhood and battles, internal and external.',
           imageUrl: 'https://picsum.photos/seed/fighter-thrill/200/300',
           trailerUrl: 'https://www.youtube.com/watch?v=6amIq_mP4xM'
+        },
+        {
+          title: 'Drishyam',
+          year: 2015,
+          imdbRating: 8.2,
+          platform: 'Disney+',
+          description: 'Desperate measures are taken by a man who tries to save his family from the dark side of the law, after they commit an unexpected crime.',
+          imageUrl: 'https://picsum.photos/seed/drishyam-thrill/200/300',
+          trailerUrl: 'https://www.youtube.com/watch?v=AuuX2j14NBg'
+        },
+        {
+          title: 'A Wednesday',
+          year: 2008,
+          imdbRating: 8.1,
+          platform: 'Netflix',
+          description: 'A retiring police commissioner recounts the most memorable case of his career wherein he was informed about a bomb scare in Mumbai.',
+          imageUrl: 'https://picsum.photos/seed/awednesday-thrill/200/300',
+          trailerUrl: 'https://www.youtube.com/watch?v=f3yS1d34i20'
+        },
+        {
+          title: 'Rahasya',
+          year: 2015,
+          imdbRating: 7.6,
+          platform: 'Zee5',
+          description: 'When a young girl is murdered in her own house, her father is the prime suspect. A CBI officer must unravel the mystery.',
+          imageUrl: 'https://picsum.photos/seed/rahasya-thrill/200/300',
+          trailerUrl: 'https://www.youtube.com/watch?v=5-Q2G_62p-4'
+        },
+        {
+          title: 'Special 26',
+          year: 2013,
+          imdbRating: 8.0,
+          platform: 'Netflix',
+          description: 'A team of con artists pose as CBI officers and conduct bogus raids on corrupt officials and businessmen.',
+          imageUrl: 'https://picsum.photos/seed/special26-thrill/200/300',
+          trailerUrl: 'https://www.youtube.com/watch?v=Piy6F1F3J5s'
+        },
+        {
+          title: 'Silence... Can You Hear It?',
+          year: 2021,
+          imdbRating: 6.7,
+          platform: 'Zee5',
+          description: 'When a high-profile judge\'s daughter is found dead, a special team of detectives is assigned to uncover the truth.',
+          imageUrl: 'https://picsum.photos/seed/silence-thrill/200/300',
+          trailerUrl: 'https://www.youtube.com/watch?v=7h_43y-p_eE'
         }
       ]
     }
