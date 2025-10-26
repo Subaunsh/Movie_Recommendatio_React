@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { getMoodMoviesAction } from '@/app/actions';
@@ -8,8 +8,6 @@ import type { Movie } from '@/lib/types';
 import { MovieCard } from '@/components/movie-card';
 import { Loader2, Clapperboard } from 'lucide-react';
 import { Separator } from '../ui/separator';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
-import { Label } from '../ui/label';
 
 const moods = [
   { name: 'Nostalgic', emoji: '🕰️' },
@@ -20,21 +18,17 @@ const moods = [
   { name: 'Intense', emoji: '🔥' },
 ];
 
-const genres = ["Any", "Comedy", "Action", "Drama", "Sci-Fi", "Horror", "Romance", "Thriller"];
-
-
 export function MoodSelector() {
   const [selectedMood, setSelectedMood] = useState<string | null>(null);
-  const [selectedGenre, setSelectedGenre] = useState<string>('any');
   const [movies, setMovies] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  const fetchMovies = async (mood: string, genre: string) => {
+  const fetchMovies = async (mood: string) => {
     setIsLoading(true);
     setMovies([]);
     
-    const result = await getMoodMoviesAction(mood, genre);
+    const result = await getMoodMoviesAction(mood);
     setIsLoading(false);
 
     if (result.success && result.data) {
@@ -51,14 +45,7 @@ export function MoodSelector() {
   const handleMoodSelect = (mood: string) => {
     setSelectedMood(mood);
     if(mood) {
-        fetchMovies(mood, selectedGenre);
-    }
-  };
-
-  const handleGenreChange = (genre: string) => {
-    setSelectedGenre(genre);
-    if (selectedMood) {
-      fetchMovies(selectedMood, genre);
+        fetchMovies(mood);
     }
   };
 
@@ -84,21 +71,6 @@ export function MoodSelector() {
         ))}
       </div>
       
-      {selectedMood && (
-        <div className="max-w-xs mx-auto mt-8 space-y-2">
-            <Label htmlFor="genre-select">Filter by Genre</Label>
-            <Select onValueChange={handleGenreChange} defaultValue={selectedGenre} disabled={isLoading}>
-                <SelectTrigger id="genre-select">
-                    <SelectValue placeholder="Select a genre" />
-                </SelectTrigger>
-                <SelectContent>
-                    {genres.map(g => <SelectItem key={g} value={g.toLowerCase()}>{g}</SelectItem>)}
-                </SelectContent>
-            </Select>
-        </div>
-      )}
-
-
       {(isLoading || movies.length > 0) && (
         <div className="mt-12">
           <Separator className="my-8" />
@@ -128,7 +100,7 @@ export function MoodSelector() {
        {!isLoading && movies.length === 0 && selectedMood && (
         <div className="text-center mt-12 text-muted-foreground">
           <Clapperboard className="mx-auto h-12 w-12" />
-          <p className="mt-4">No movies found for this mood and genre. Try another one!</p>
+          <p className="mt-4">No movies found for this mood. Try another one!</p>
         </div>
       )}
     </>
