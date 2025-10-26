@@ -296,6 +296,54 @@ const getMoviesByMoodFlow = ai.defineFlow(
             trailerUrl: 'https://www.youtube.com/watch?v=mYRdptA8D7A'
         }
       ]
+    } else if (input.mood.toLowerCase() === 'happy') {
+      return [
+        {
+          title: 'Happy Ending',
+          year: 2014,
+          imdbRating: 5.4,
+          platform: 'JioCinema',
+          description: 'A comedy about a writer who has writer\'s block and finds inspiration in a quirky romance.',
+          imageUrl: 'https://picsum.photos/seed/happyending/200/300',
+          trailerUrl: 'https://www.youtube.com/watch?v=3-pI8J03-tU'
+        },
+        {
+          title: 'Love Aaj Kal',
+          year: 2009,
+          imdbRating: 6.8,
+          platform: 'JioCinema',
+          description: 'Two different love stories, one in the past and one in the present, explore the changing nature of relationships.',
+          imageUrl: 'https://picsum.photos/seed/loveaajkal/200/300',
+          trailerUrl: 'https://www.youtube.com/watch?v=pP5e-d2I-pg'
+        },
+        {
+          title: 'Goliyon Ki Raasleela Ram-Leela',
+          year: 2013,
+          imdbRating: 6.4,
+          platform: 'JioCinema',
+          description: 'A modern adaptation of Romeo and Juliet, set in a violent, gun-trotting village in Gujarat.',
+          imageUrl: 'https://picsum.photos/seed/ramleela/200/300',
+          trailerUrl: 'https://www.youtube.com/watch?v=L-2JyD0IerY'
+        },
+        {
+          title: 'Ae Dil Hai Mushkil',
+          year: 2016,
+          imdbRating: 5.8,
+          platform: 'Netflix',
+          description: 'A story about unrequited love, heartbreak, and the journey of two characters, Ayan and Alizeh.',
+          imageUrl: 'https://picsum.photos/seed/aedilhaimushkil-happy/200/300',
+          trailerUrl: 'https://www.youtube.com/watch?v=Z_POD748vyQ'
+        },
+        {
+          title: 'Rockstar',
+          year: 2011,
+          imdbRating: 7.7,
+          platform: 'JioCinema',
+          description: 'A college student chases his dream of becoming a rockstar, but his journey is filled with love, heartbreak, and fame.',
+          imageUrl: 'https://picsum.photos/seed/rockstar/200/300',
+          trailerUrl: 'https://www.youtube.com/watch?v=ARv-v2d8L7M'
+        }
+      ]
     }
     const {output} = await prompt(input);
     return output!;
