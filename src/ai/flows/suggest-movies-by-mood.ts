@@ -15,6 +15,7 @@ const SuggestMoviesByMoodInputSchema = z.object({
   mood: z
     .string()
     .describe("The user's current mood (e.g., 'nostalgic', 'thrilling', 'funny', 'emotional')."),
+  genre: z.string().optional().describe('Optional: The genre to filter the watchlist by (e.g., comedy, action, drama).'),
 });
 export type SuggestMoviesByMoodInput = z.infer<typeof SuggestMoviesByMoodInputSchema>;
 
@@ -42,8 +43,11 @@ const suggestMoviesByMoodPrompt = ai.definePrompt({
   input: {schema: SuggestMoviesByMoodInputSchema},
   output: {schema: SuggestMoviesByMoodOutputSchema},
   prompt: `You are CineMatch, an AI movie recommendation expert. A user is feeling {{{mood}}}.
+  {{#if genre}}
+  The genre should be: {{{genre}}}
+  {{/if}}
 
-  Suggest a list of movies that match the mood. Provide the title, year, a short description, and optionally the IMDB rating and where it can be streamed.
+  Suggest a list of movies that match the mood and genre. Provide the title, year, a short description, and optionally the IMDB rating and where it can be streamed.
   Format each movie suggestion like this:
   🎥 Movie Name (Year)
   ⭐ IMDb: 8.3/10

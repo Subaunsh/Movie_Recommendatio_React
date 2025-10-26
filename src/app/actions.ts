@@ -39,9 +39,9 @@ export async function getRecommendationsAction(formData: FormData) {
   }
 }
 
-export async function getMoodMoviesAction(mood: string) {
+export async function getMoodMoviesAction(mood: string, genre?: string) {
     try {
-        const result = await suggestMoviesByMood({ mood });
+        const result = await suggestMoviesByMood({ mood, genre: genre === 'any' ? undefined : genre });
         return { success: true, data: result.movies };
     } catch (error) {
         console.error(error);
