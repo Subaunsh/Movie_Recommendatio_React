@@ -72,9 +72,9 @@ export default function HomePage() {
       {categories.map((category) => (
         <section key={category.title}>
           <h2 className="text-2xl font-bold font-headline mb-4 text-primary">{category.title}</h2>
-          <div className="flex space-x-6 overflow-x-auto pb-4 -mx-4 px-4">
+          <div className="flex space-x-4 overflow-x-auto pb-4 -mx-4 px-4">
             {category.movies.map((movie: Movie) => (
-              <div key={movie.title} className="w-64 flex-shrink-0">
+              <div key={movie.title} className="w-48 flex-shrink-0">
                 <MovieCard movie={movie} />
               </div>
             ))}
