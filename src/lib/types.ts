@@ -7,4 +7,5 @@ export type Movie = {
   streamingAvailability?: string;
   description: string;
   imageUrl?: string;
+  trailerUrl?: string;
 };

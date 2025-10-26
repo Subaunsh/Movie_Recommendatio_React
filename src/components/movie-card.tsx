@@ -49,6 +49,29 @@ export function MovieCard({ movie }: MovieCardProps) {
     }
   };
 
+  const handleTrailerClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (movie.trailerUrl && movie.trailerUrl !== 'https://www.example.com') {
+      window.open(movie.trailerUrl, '_blank', 'noopener,noreferrer');
+    } else {
+      toast({
+        variant: "destructive",
+        title: "Trailer not available",
+        description: `We couldn't find a trailer for "${movie.title}".`,
+      })
+    }
+  };
+  
+  const handleMovieClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toast({
+        title: "Feature coming soon!",
+        description: "The ability to watch movies is not yet implemented.",
+    });
+  }
+
   return (
     <Card className="group relative flex flex-col overflow-hidden h-full transform transition-all duration-300 hover:scale-105 hover:shadow-xl w-48">
       <CardHeader className="p-0">
@@ -61,11 +84,11 @@ export function MovieCard({ movie }: MovieCardProps) {
               data-ai-hint="movie poster"
           />
            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2">
-            <Button variant="secondary" size="sm">
+            <Button variant="secondary" size="sm" onClick={handleMovieClick}>
               <Play className="mr-1 h-4 w-4" />
               Movie
             </Button>
-            <Button variant="destructive" size="sm">
+            <Button variant="destructive" size="sm" onClick={handleTrailerClick}>
               <Clapperboard className="mr-1 h-4 w-4" />
               Trailer
             </Button>
