@@ -10,7 +10,6 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
-import {handlebars} from 'genkit/tools';
 
 const GetMoviesByMoodInputSchema = z.object({
   mood: z.string().describe('The mood of the user (e.g., happy, sad, mystic, funny, emotional, thrilling).'),
@@ -276,7 +275,7 @@ const getMoviesByMoodFlow = ai.defineFlow(
             platform: 'Netflix',
             description: 'A police officer\'s investigation into a high-profile car accident case leads him to a mysterious woman and a dark secret.',
             imageUrl: 'https://picsum.photos/seed/talaash-thrill/200/300',
-            trailerUrl: 'https://www.youtube.com/watch?v=m-p_n2j3o1Y'
+            trailerUrl: 'https://www.youtube.com/watch?v=m-p_n2i3o1Y'
         },
         {
             title: 'Ittefaq',
@@ -297,60 +296,8 @@ const getMoviesByMoodFlow = ai.defineFlow(
             trailerUrl: 'https://www.youtube.com/watch?v=mYRdptA8D7A'
         }
       ]
-    } else if (input.mood.toLowerCase() === 'happy') {
-      return [
-        {
-          title: 'Happy Ending',
-          year: 2014,
-          imdbRating: 5.4,
-          platform: 'JioCinema',
-          description: 'A confused writer goes on the search for inspiration for his next story and falls in love with a girl who has commitment issues.',
-          imageUrl: 'https://picsum.photos/seed/happyending/200/300',
-          trailerUrl: 'https://www.youtube.com/watch?v=3-pLu_4q-Qo'
-        },
-        {
-          title: 'Love Aaj Kal',
-          year: 2009,
-          imdbRating: 6.7,
-          platform: 'JioCinema',
-          description: 'Two different love stories from different eras are woven together to explore the changing nature of relationships.',
-          imageUrl: 'https://picsum.photos/seed/loveaajkal/200/300',
-          trailerUrl: 'https://www.youtube.com/watch?v=4iG2p2c_P3o'
-        },
-        {
-          title: 'Goliyon Ki Raasleela Ram-Leela',
-          year: 2013,
-          imdbRating: 6.3,
-          platform: 'JioCinema',
-          description: 'A modern adaptation of Romeo and Juliet, this film is a vibrant and passionate love story set against a backdrop of feuding families.',
-          imageUrl: 'https://picsum.photos/seed/ramleela/200/300',
-          trailerUrl: 'https://www.youtube.com/watch?v=StphRCLkx6Q'
-        },
-        {
-          title: 'Ae Dil Hai Mushkil',
-          year: 2016,
-          imdbRating: 5.8,
-          platform: 'Netflix',
-          description: 'Though emotional, this movie celebrates love, friendship, and heartbreak with beautiful music and a happy spirit.',
-          imageUrl: 'https://picsum.photos/seed/aedilhaimushkil-happy/200/300',
-          trailerUrl: 'https://www.youtube.com/watch?v=Z_POD748vyQ'
-        },
-        {
-          title: 'Rockstar',
-          year: 2011,
-          imdbRating: 7.7,
-          platform: 'JioCinema',
-          description: 'The journey of a simple college boy who becomes an international rock sensation, filled with passion, love, and powerful music.',
-          imageUrl: 'https://picsum.photos/seed/rockstar/200/300',
-          trailerUrl: 'https://www.youtube.com/watch?v=bD5F3Q_3T-E'
-        }
-      ]
     }
     const {output} = await prompt(input);
     return output!;
   }
 );
-// Helper for Handlebars to check for equality
-ai.handlebars.registerHelper('ifEquals', function (this: any, arg1, arg2, options) {
-  return arg1 == arg2 ? options.fn(this) : options.inverse(this);
-});
