@@ -440,6 +440,54 @@ const getMoviesByMoodFlow = ai.defineFlow(
                 trailerUrl: 'https://www.youtube.com/watch?v=v05013QhX-M'
             }
         ]
+    } else if (input.mood.toLowerCase() === 'mystic') {
+        return [
+            {
+                title: 'Sanam Teri Kasam',
+                year: 2016,
+                imdbRating: 7.9,
+                platform: 'JioCinema',
+                description: 'A musical romantic tragedy about a librarian who is disowned by her family and falls for her brooding neighbor.',
+                imageUrl: 'https://picsum.photos/seed/sanamterikasam-mystic/200/300',
+                trailerUrl: 'https://www.youtube.com/watch?v=1u6a-f-zK7A',
+            },
+            {
+                title: 'Dil To Pagal Hai',
+                year: 1997,
+                imdbRating: 7.0,
+                platform: 'Prime Video',
+                description: 'A classic musical love triangle between a director, his leading lady, and his best friend.',
+                imageUrl: 'https://picsum.photos/seed/dil-to-pagal-hai-mystic/200/300',
+                trailerUrl: 'https://www.youtube.com/watch?v=pP5e-d2I-pg',
+            },
+            {
+                title: 'Saiyaara (from Ek Tha Tiger)',
+                year: 2012,
+                imdbRating: 5.6,
+                platform: 'Prime Video',
+                description: "While not a movie, 'Saiyaara' is an emotional song from 'Ek Tha Tiger' about longing and love. The film is about an Indian spy who falls for a Pakistani agent during a mission.",
+                imageUrl: 'https://picsum.photos/seed/saiyaara-mystic/200/300',
+                trailerUrl: 'https://www.youtube.com/watch?v=pES-4V6jL4s',
+            },
+            {
+                title: 'Ek Deewana Tha',
+                year: 2012,
+                imdbRating: 5.7,
+                platform: 'JioCinema',
+                description: 'An aspiring filmmaker falls in love with a woman from a conservative Christian family, leading to a passionate but tumultuous romance.',
+                imageUrl: 'https://picsum.photos/seed/ekdeewanatha-mystic/200/300',
+                trailerUrl: 'https://www.youtube.com/watch?v=b4l3sZ2WkL4'
+            },
+            {
+                title: 'Om Shanti Om',
+                year: 2007,
+                imdbRating: 6.7,
+                platform: 'Netflix',
+                description: 'A junior artist from the 1970s is reincarnated into the 2000s to avenge his own death and reunite with his love.',
+                imageUrl: 'https://picsum.photos/seed/omshantiom-mystic/200/300',
+                trailerUrl: 'https://www.youtube.com/watch?v=v05013QhX-M'
+            }
+        ]
     }
     const {output} = await prompt(input);
     return output!;
