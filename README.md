@@ -1,4 +1,4 @@
-# Firebase Studio
+# Movie Recomendation React
 
 This is a NextJS starter in Firebase Studio.
 
