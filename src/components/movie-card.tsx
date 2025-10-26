@@ -3,7 +3,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from '@/components/ui/badge';
 import type { Movie } from '@/lib/types';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Star, Tv } from 'lucide-react';
+import { Star, Tv, Play, Clapperboard } from 'lucide-react';
+import { Button } from './ui/button';
 
 const placeholderImage = PlaceHolderImages.find(p => p.id === 'movie-placeholder');
 
@@ -15,7 +16,7 @@ export function MovieCard({ movie }: MovieCardProps) {
   const platform = movie.platform || movie.streamingPlatform || movie.streamingAvailability;
 
   return (
-    <Card className="flex flex-col overflow-hidden h-full transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
+    <Card className="group relative flex flex-col overflow-hidden h-full transform transition-all duration-300 hover:scale-105 hover:shadow-xl w-48">
       <CardHeader className="p-0">
         <div className="aspect-[2/3] relative">
           {placeholderImage && (
@@ -27,6 +28,16 @@ export function MovieCard({ movie }: MovieCardProps) {
                 data-ai-hint={placeholderImage.imageHint}
             />
           )}
+           <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2">
+            <Button variant="secondary" size="sm">
+              <Play className="mr-1 h-4 w-4" />
+              Movie
+            </Button>
+            <Button variant="destructive" size="sm">
+              <Clapperboard className="mr-1 h-4 w-4" />
+              Trailer
+            </Button>
+          </div>
         </div>
       </CardHeader>
       <CardContent className="flex-grow p-3 space-y-1">
