@@ -48,11 +48,9 @@ const suggestMoviesByMoodPrompt = ai.definePrompt({
   {{/if}}
 
   Suggest a list of movies that match the mood and genre. Provide the title, year, a short description, and optionally the IMDB rating and where it can be streamed.
-  Format each movie suggestion like this:
-  🎥 Movie Name (Year)
-  ⭐ IMDb: 8.3/10
-  📺 Available on: Netflix
-  🎞️ Description: A short 2–3 line summary highlighting why it matches the user’s preference.
+  
+  Format your response as a JSON object with a "movies" array. Each movie object in the array should include: title, year, description, and optionally imdbRating and streamingPlatform.
+  Ensure that the year is a number.
   `,
 });
 
@@ -63,7 +61,12 @@ const suggestMoviesByMoodFlow = ai.defineFlow(
     outputSchema: SuggestMoviesByMoodOutputSchema,
   },
   async input => {
-    const {output} = await suggestMoviesByMoodPrompt(input);
+    // If the genre is 'any', we should not pass it to the prompt.
+    const promptInput = { ...input };
+    if (promptInput.genre === 'any') {
+      delete promptInput.genre;
+    }
+    const {output} = await suggestMoviesByMoodPrompt(promptInput);
     return output!;
   }
 );
