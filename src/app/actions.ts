@@ -17,6 +17,14 @@ export async function getRecommendationsAction(formData: FormData) {
     const mood = formData.get('mood') as string | undefined;
     const platform = formData.get('platform') as string | undefined;
     
+    // If only mood is provided, use the mood-specific flow
+    const favMovies = formData.get('favoriteMovies');
+    const favGenres = formData.get('favoriteGenres');
+    if (mood && mood !== 'any' && !favMovies && !favGenres) {
+        const result = await suggestMoviesByMood({ mood });
+        return { success: true, data: result.movies };
+    }
+
     const recommendations = await generateMovieRecommendations({
       tasteProfile,
       mood: mood === 'any' ? undefined : mood,
