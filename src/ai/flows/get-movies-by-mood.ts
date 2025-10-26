@@ -5,11 +5,12 @@
  *
  * - getMoviesByMood - A function that handles the movie recommendation process based on mood.
  * - GetMoviesByMoodInput - The input type for the getMoviesByMood function.
- * - GetMoviesByMoodOutput - The return type for the getMoviesByMood function.
+ * - GetMoviesByMoodOutput - The return type for the getMoviesByyMood function.
  */
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import {handlebars} from 'genkit/tools';
 
 const GetMoviesByMoodInputSchema = z.object({
   mood: z.string().describe('The mood of the user (e.g., happy, sad, mystic, funny, emotional, thrilling).'),
@@ -249,6 +250,51 @@ const getMoviesByMoodFlow = ai.defineFlow(
           description: 'When a high-profile judge\'s daughter is found dead, a special team of detectives is assigned to uncover the truth.',
           imageUrl: 'https://picsum.photos/seed/silence-thrill/200/300',
           trailerUrl: 'https://www.youtube.com/watch?v=7h_43y-p_eE'
+        },
+        {
+            title: 'Kahaani',
+            year: 2012,
+            imdbRating: 8.1,
+            platform: 'JioCinema',
+            description: 'A pregnant woman travels to Kolkata from London to search for her missing husband.',
+            imageUrl: 'https://picsum.photos/seed/kahaani-thrill/200/300',
+            trailerUrl: 'https://www.youtube.com/watch?v=rsjamo0GPwo'
+        },
+        {
+            title: 'Talvar',
+            year: 2015,
+            imdbRating: 8.1,
+            platform: 'Netflix',
+            description: 'An experienced investigator confronts several conflicting theories about the perpetrators of a violent double homicide.',
+            imageUrl: 'https://picsum.photos/seed/talvar-thrill/200/300',
+            trailerUrl: 'https://www.youtube.com/watch?v=aQ2sI-3hG6s'
+        },
+        {
+            title: 'Talaash',
+            year: 2012,
+            imdbRating: 7.2,
+            platform: 'Netflix',
+            description: 'A police officer\'s investigation into a high-profile car accident case leads him to a mysterious woman and a dark secret.',
+            imageUrl: 'https://picsum.photos/seed/talaash-thrill/200/300',
+            trailerUrl: 'https://www.youtube.com/watch?v=m-p_n2j3o1Y'
+        },
+        {
+            title: 'Ittefaq',
+            year: 2017,
+            imdbRating: 7.2,
+            platform: 'Netflix',
+            description: 'A detective seeks the truth between two different stories of a crime scene.',
+            imageUrl: 'https://picsum.photos/seed/ittefaq-thrill/200/300',
+            trailerUrl: 'https://www.youtube.com/watch?v=I-hD1_SjX9o'
+        },
+        {
+            title: 'Badla',
+            year: 2019,
+            imdbRating: 7.8,
+            platform: 'Netflix',
+            description: 'A young entrepreneur hires a prestigious lawyer to defend her in a murder case.',
+            imageUrl: 'https://picsum.photos/seed/badla-thrill/200/300',
+            trailerUrl: 'https://www.youtube.com/watch?v=mYRdptA8D7A'
         }
       ]
     } else if (input.mood.toLowerCase() === 'happy') {
@@ -304,3 +350,7 @@ const getMoviesByMoodFlow = ai.defineFlow(
     return output!;
   }
 );
+// Helper for Handlebars to check for equality
+ai.handlebars.registerHelper('ifEquals', function (this: any, arg1, arg2, options) {
+  return arg1 == arg2 ? options.fn(this) : options.inverse(this);
+});
