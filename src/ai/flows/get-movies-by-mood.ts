@@ -185,7 +185,7 @@ const getMoviesByMoodFlow = ai.defineFlow(
 );
 
 // Helper for Handlebars to check for equality
-import {handlebars} from 'genkit/extensions/ai';
+import {handlebars} from 'genkit';
 handlebars.registerHelper('ifEquals', function (this: any, arg1, arg2, options) {
   return arg1 == arg2 ? options.fn(this) : options.inverse(this);
 });
