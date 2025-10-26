@@ -16,13 +16,16 @@ const GetMoviesByMoodInputSchema = z.object({
 });
 export type GetMoviesByMoodInput = z.infer<typeof GetMoviesByMoodInputSchema>;
 
-const GetMoviesByMoodOutputSchema = z.array(z.object({
+const GetMoviesByMoodOutputSchema = z.object({
+  recommendations: z.array(z.object({
     title: z.string().describe('The title of the movie.'),
     year: z.number().optional().describe('The release year of the movie.'),
     imdbRating: z.number().optional().describe('The IMDb rating of the movie.'),
     platform: z.string().optional().describe('The streaming platform where the movie is available.'),
     description: z.string().describe('A short summary highlighting why it matches the user’s mood.'),
-}));
+  })),
+});
+
 
 export type GetMoviesByMoodOutput = z.infer<typeof GetMoviesByMoodOutputSchema>;
 
@@ -42,16 +45,18 @@ const prompt = ai.definePrompt({
 
   Recommend 6 movies that fit this mood. Include short, appealing descriptions and optional details like IMDb rating, release year, and where to watch.
 
-  Format your response as a JSON array of movie objects:
-    [
-        {
-            "title": "Movie Name",
-            "year": 2024,
-            "imdbRating": 7.8,
-            "platform": "Netflix",
-            "description": "A short 2–3 line summary highlighting why it matches the user’s mood."
-        }
-    ]
+  Format your response as a JSON object with a 'recommendations' key containing an array of movie objects:
+    {
+      "recommendations": [
+          {
+              "title": "Movie Name",
+              "year": 2024,
+              "imdbRating": 7.8,
+              "platform": "Netflix",
+              "description": "A short 2–3 line summary highlighting why it matches the user’s mood."
+          }
+      ]
+    }
   `,
 });
 

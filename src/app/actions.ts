@@ -74,7 +74,7 @@ export async function getAiWatchlistAction(formData: FormData) {
 export async function getMoviesByMoodAction(mood: string) {
     try {
         const result = await getMoviesByMood({ mood });
-        return { success: true, data: result };
+        return { success: true, data: result.recommendations };
     } catch (error) {
         console.error(error);
         return { success: false, error: 'Failed to get movies for this mood. Please try again.' };
