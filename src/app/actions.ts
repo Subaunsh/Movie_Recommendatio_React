@@ -3,6 +3,7 @@
 import { generateMovieRecommendations } from '@/ai/flows/generate-movie-recommendations';
 import { discoverHiddenGems } from '@/ai/flows/discover-hidden-gems';
 import { createAIWatchlist } from '@/ai/flows/create-ai-watchlists';
+import { getMoviesByMood } from '@/ai/flows/get-movies-by-mood';
 
 export async function getRecommendationsAction(formData: FormData) {
   try {
@@ -67,5 +68,15 @@ export async function getAiWatchlistAction(formData: FormData) {
     } catch (error) {
         console.error(error);
         return { success: false, error: 'Failed to generate AI watchlist. Please try again.' };
+    }
+}
+
+export async function getMoviesByMoodAction(mood: string) {
+    try {
+        const result = await getMoviesByMood({ mood });
+        return { success: true, data: result };
+    } catch (error) {
+        console.error(error);
+        return { success: false, error: 'Failed to get movies for this mood. Please try again.' };
     }
 }

@@ -3,19 +3,19 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { getMoodMoviesAction } from '@/app/actions';
+import { getMoviesByMoodAction } from '@/app/actions';
 import type { Movie } from '@/lib/types';
 import { MovieCard } from '@/components/movie-card';
 import { Loader2, Clapperboard } from 'lucide-react';
 import { Separator } from '../ui/separator';
 
 const moods = [
-  { name: 'Nostalgic', emoji: '🕰️' },
-  { name: 'Thrilling', emoji: '🎢' },
+  { name: 'Happy', emoji: '😊' },
+  { name: 'Sad', emoji: '😢' },
+  { name: 'Mystic', emoji: '🔮' },
+  { name: 'Emotional', emoji: '💖' },
   { name: 'Funny', emoji: '😂' },
-  { name: 'Emotional', emoji: '😢' },
-  { name: 'Heartwarming', emoji: '💖' },
-  { name: 'Intense', emoji: '🔥' },
+  { name: 'Thrilling', emoji: '🎢' },
 ];
 
 export function MoodSelector() {
@@ -28,7 +28,7 @@ export function MoodSelector() {
     setIsLoading(true);
     setMovies([]);
     
-    const result = await getMoodMoviesAction(mood);
+    const result = await getMoviesByMoodAction(mood);
     setIsLoading(false);
 
     if (result.success && result.data) {
