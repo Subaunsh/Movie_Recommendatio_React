@@ -35,6 +35,11 @@ export async function getMoviesByMood(
   return getMoviesByMoodFlow(input);
 }
 
+// Helper for Handlebars to check for equality
+ai.handlebars.registerHelper('ifEquals', function (this: any, arg1, arg2, options) {
+  return arg1 == arg2 ? options.fn(this) : options.inverse(this);
+});
+
 const prompt = ai.definePrompt({
   name: 'getMoviesByMoodPrompt',
   input: {schema: GetMoviesByMoodInputSchema},
@@ -183,9 +188,3 @@ const getMoviesByMoodFlow = ai.defineFlow(
     return output!;
   }
 );
-
-// Helper for Handlebars to check for equality
-import {handlebars} from 'genkit';
-handlebars.registerHelper('ifEquals', function (this: any, arg1, arg2, options) {
-  return arg1 == arg2 ? options.fn(this) : options.inverse(this);
-});
